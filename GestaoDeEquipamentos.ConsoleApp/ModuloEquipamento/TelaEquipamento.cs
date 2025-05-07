@@ -1,13 +1,13 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+    public RepositorioEquipamento repositorioEquipamento;
 
     public void ExibirCabecalho()
     {
         Console.Clear();
-        Console.WriteLine("Gestão De Equipamentos");
+        Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine();
     }
 
@@ -33,7 +33,8 @@ public class TelaEquipamento
     {
         ExibirCabecalho();
 
-        Console.WriteLine("Cadastro De Equipamentos");
+        Console.WriteLine("Cadastro de Equipamentos");
+
         Console.WriteLine();
 
         Equipamento equipamento = ObterDados();
@@ -44,23 +45,23 @@ public class TelaEquipamento
         Console.ReadLine();
     }
 
-
     public void VisualizarRegistros(bool exibirCabecalho)
     {
         if (exibirCabecalho == true)
-           ExibirCabecalho();
+            ExibirCabecalho();
 
-        Console.WriteLine("Visualização De Equipamentos");
+        Console.WriteLine("Visualização de Equipamentos");
+
         Console.WriteLine();
 
         Console.WriteLine(
-            "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -15} | ",
+            "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
             "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
         );
 
         Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
 
-        for ( int i = 0; i < equipamentos.Length; i++ )
+        for (int i = 0; i < equipamentos.Length; i++)
         {
             Equipamento e = equipamentos[i];
 
@@ -68,8 +69,8 @@ public class TelaEquipamento
                 continue;
 
             Console.WriteLine(
-                "{0, -10} | {1, -20} | {2, -15} | {3, -10} | {4, -20} | {5, -15} | ",
-                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante, e.dataFabricacao.ToShortTimeString()
+                "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
+                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante, e.dataFabricacao.ToShortDateString()
             );
         }
 
@@ -80,13 +81,14 @@ public class TelaEquipamento
     {
         ExibirCabecalho();
 
-        Console.WriteLine("Edição De Equipamentos");
+        Console.WriteLine("Edição de Equipamentos");
+
         Console.WriteLine();
 
         VisualizarRegistros(false);
 
-        Console.WriteLine("Digite o id do registro que deseja selecionar:");
-        int idSelecionado = Convert.ToInt32( Console.ReadLine());
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine();
 
@@ -105,21 +107,23 @@ public class TelaEquipamento
         Console.WriteLine($"\nEquipamento \"{equipamentoAtualizado.nome}\" editado com sucesso!");
         Console.ReadLine();
     }
+
     public void ExcluirRegistro()
     {
         ExibirCabecalho();
 
-        Console.WriteLine("Exclusão De Equipamentos");
+        Console.WriteLine("Exclusão de Equipamentos");
+
         Console.WriteLine();
 
         VisualizarRegistros(false);
 
-        Console.WriteLine("Digite o id do registro que deseja selecionar:");
+        Console.Write("Digite o id do registro que deseja selecionar: ");
         int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine();
 
-        bool conseguiuExcluir = repositorioEquipamento.EXcluirEquipamento(idSelecionado);
+        bool conseguiuExcluir = repositorioEquipamento.ExcluirEquipamento(idSelecionado);
 
         if (!conseguiuExcluir)
         {
@@ -129,7 +133,7 @@ public class TelaEquipamento
             return;
         }
 
-        Console.WriteLine($"\nEquipamento excluido com sucesso!");
+        Console.WriteLine($"\nEquipamento excluído com sucesso!");
         Console.ReadLine();
     }
 
@@ -159,6 +163,4 @@ public class TelaEquipamento
 
         return equipamento;
     }
-
-   
 }

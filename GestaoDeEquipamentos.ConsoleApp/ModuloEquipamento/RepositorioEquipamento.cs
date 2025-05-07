@@ -1,4 +1,4 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class RepositorioEquipamento
 {
@@ -19,8 +19,6 @@ public class RepositorioEquipamento
         if (equipamentoSelecionado == null)
             return false;
 
-
-
         equipamentoSelecionado.nome = equipamentoAtualizado.nome;
         equipamentoSelecionado.precoAquisicao = equipamentoAtualizado.precoAquisicao;
         equipamentoSelecionado.numeroSerie = equipamentoAtualizado.numeroSerie;
@@ -30,10 +28,8 @@ public class RepositorioEquipamento
         return true;
     }
 
-
-    public bool EXcluirEquipamento(int idSelecionado)
+    public bool ExcluirEquipamento(int idSelecionado)
     {
-
         for (int i = 0; i < equipamentos.Length; i++)
         {
             if (equipamentos[i] == null)
@@ -46,18 +42,17 @@ public class RepositorioEquipamento
                 return true;
             }
         }
+
         return false;
-    } 
+    }
 
     public Equipamento[] SelecionarEquipamentos()
     {
         return equipamentos;
     }
 
-
     public Equipamento SelecionarEquipamentoPorId(int idSelecionado)
     {
-
         for (int i = 0; i < equipamentos.Length; i++)
         {
             Equipamento e = equipamentos[i];
