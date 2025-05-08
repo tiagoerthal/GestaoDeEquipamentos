@@ -6,7 +6,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
     public class Fabricantes
     {
         public int id;
-        public string nomeFabricante;
+        public string nomeRepresentante;
         public string emailFabricante;
         public string telefoneFabricante;
 

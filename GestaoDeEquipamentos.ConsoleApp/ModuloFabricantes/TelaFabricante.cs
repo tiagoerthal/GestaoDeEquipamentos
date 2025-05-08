@@ -7,8 +7,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
 {
     public class TelaFabricante
     {
-        public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
-
+        public RepositorioEquipamento repositorioEquipamento;
         public void ExibirCabecalho()
         {
             Console.Clear();
@@ -45,7 +44,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
             Fabricantes fabricantes = ObterDados();
 
 
-            Console.WriteLine($"\nFabricante \"{fabricantes.nomeFabricante}\" cadastrado com sucesso!");
+            Console.WriteLine($"\nRepresentante \"{fabricantes.nomeRepresentante}\" cadastrado com sucesso!");
             Console.ReadLine();
         }
 
@@ -66,8 +65,8 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
 
         public Fabricantes ObterDados()
         {
-            Console.Write("Digite o nome do Fabricante: ");
-            string nomeFabricante = Console.ReadLine();
+            Console.Write("Digite o nome do Representante: ");
+            string nomeRepresentante = Console.ReadLine();
 
             Console.Write("Digite o email do Fabricante: ");
             string emailFabricante = Console.ReadLine();

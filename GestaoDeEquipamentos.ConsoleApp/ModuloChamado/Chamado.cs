@@ -2,7 +2,7 @@
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
 {
-    internal class Chamado
+    public class Chamado
     {
         public int id;
         public string titulo;
