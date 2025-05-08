@@ -1,5 +1,6 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
 
@@ -16,6 +17,8 @@ class Program
         TelaChamado telaChamado = new TelaChamado();
         telaChamado.repositorioChamado = repositorioChamado;
         telaChamado.repositorioEquipamento = repositorioEquipamento;
+
+        TelaFabricante telaFabricante = new TelaFabricante();
 
         while (true)
         {
@@ -75,6 +78,32 @@ class Program
                 }
             }
 
+            else if (telaEscolhida == '3')
+            {
+                char opcaoEscolhida = telaFabricante.ApresentarMenu();
+
+                if (opcaoEscolhida == 'S')
+                    break;
+
+                switch (opcaoEscolhida)
+                {
+                    case '1':
+                        telaFabricante.CadastrarRegistro();
+                        break;
+
+                    case '2':
+                        telaFabricante.VisualizarRegistros(true);
+                        break;
+
+                    case '3':
+                        telaFabricante.EditarRegistro();
+                        break;
+
+                    case '4':
+                        telaFabricante.ExcluirRegistro();
+                        break;
+                }
+            }
         }
     }
 
