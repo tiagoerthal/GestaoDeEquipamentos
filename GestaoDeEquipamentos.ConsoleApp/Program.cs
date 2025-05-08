@@ -10,6 +10,7 @@ class Program
     {
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();
+        RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
 
         TelaEquipamento telaEquipamento = new TelaEquipamento();
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
@@ -19,6 +20,7 @@ class Program
         telaChamado.repositorioEquipamento = repositorioEquipamento;
 
         TelaFabricante telaFabricante = new TelaFabricante();
+        telaFabricante.repositorioFabricante = repositorioFabricante;
         telaFabricante.repositorioEquipamento = repositorioEquipamento;
 
         while (true)

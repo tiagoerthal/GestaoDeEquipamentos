@@ -52,17 +52,94 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
 
         public void EditarRegistro()
         {
-            throw new NotImplementedException();
+            ExibirCabecalho();
+
+            Console.WriteLine("Edição de Fabricantes");
+
+            Console.WriteLine();
+
+            VisualizarRegistros(false);
+
+            Console.Write("Digite o id do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            Fabricantes fabricanteAtualizado = ObterDados();
+
+            bool conseguiuEditar = repositorioFabricante.EditarFabricantes(idSelecionado, fabricanteAtualizado);
+
+            if (!conseguiuEditar)
+            {
+                Console.WriteLine("Não foi possível encontrar o registro selecionado.");
+                Console.ReadLine();
+
+                return;
+            }
+
+            Console.WriteLine($"\nRepresentante \"{fabricanteAtualizado.nomeRepresentante}\" editado com sucesso!");
+            Console.ReadLine();
         }
 
         public void ExcluirRegistro()
         {
-            throw new NotImplementedException();
+            ExibirCabecalho();
+
+            Console.WriteLine("Exclusão de Fabricantes");
+
+            Console.WriteLine();
+
+            VisualizarRegistros(false);
+
+            Console.Write("Digite o id do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            bool conseguiuExcluir = repositorioFabricante.ExcluirFabricantes(idSelecionado);
+
+            if (!conseguiuExcluir)
+            {
+                Console.WriteLine("Não foi possível encontrar o registro selecionado.");
+                Console.ReadLine();
+
+                return;
+            }
+
+            Console.WriteLine($"\nRepresentante excluído com sucesso!");
+            Console.ReadLine();
         }
 
         public void VisualizarRegistros(bool exibirCabecalho)
         {
-            throw new NotImplementedException();
+            if (exibirCabecalho == true)
+                ExibirCabecalho();
+
+            Console.WriteLine("Visualização de Fabricantes");
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "{0, -10} | {1, -20} | {2, -20} | {3, -15} | {4, -20}",
+                "Id", "Nome do Representante", "E-mail", "Número de Telefone", "Equipamento"
+            );
+
+            Fabricantes[] fabricantes = repositorioFabricante.SelecionarFabricantes();
+
+            for (int i = 0; i < fabricantes.Length; i++)
+            {
+                Fabricantes f = fabricantes[i];
+
+                if (f == null)
+                    continue;
+
+                Console.WriteLine(
+                    "{0, -10} | {1, -20} | {2, -20} | {3, -15} | {4, -20}",
+                    f.id, f.nomeRepresentante, f.emailFabricante, f.telefoneFabricante, f.equipamento.nome
+                );
+            }
+
+            Console.ReadLine();
         }
 
         public Fabricantes ObterDados()
