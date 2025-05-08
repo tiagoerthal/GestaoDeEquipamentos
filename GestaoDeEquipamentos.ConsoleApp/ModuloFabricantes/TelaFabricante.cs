@@ -8,6 +8,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
     public class TelaFabricante
     {
         public RepositorioEquipamento repositorioEquipamento;
+        public RepositorioFabricante repositorioFabricante;
         public void ExibirCabecalho()
         {
             Console.Clear();
@@ -43,6 +44,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
 
             Fabricantes fabricantes = ObterDados();
 
+            repositorioFabricante.CadastrarFabricante(fabricantes);
 
             Console.WriteLine($"\nRepresentante \"{fabricantes.nomeRepresentante}\" cadastrado com sucesso!");
             Console.ReadLine();
@@ -79,7 +81,15 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
             Console.Write("Digite o ID do equipamento que deseja selecionar: ");
             int idEquipamento = Convert.ToInt32(Console.ReadLine());
 
-            return null;
+            Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
+            
+            Fabricantes fabricantes = new Fabricantes();
+            fabricantes.nomeRepresentante = nomeRepresentante;
+            fabricantes.emailFabricante = emailFabricante;
+            fabricantes.telefoneFabricante = telefoneFabricante;
+            fabricantes.equipamento = equipamentoSelecionado;
+
+            return fabricantes;
         }
 
         public void VisualizarEquipamentos()
