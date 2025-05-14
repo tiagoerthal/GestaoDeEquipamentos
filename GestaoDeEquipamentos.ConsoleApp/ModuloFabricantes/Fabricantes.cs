@@ -1,15 +1,16 @@
-﻿
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
+public class Fabricante
 {
-    public class Fabricantes
-    {
-        public int id;
-        public string nomeRepresentante;
-        public string emailFabricante;
-        public string telefoneFabricante;
+    public int id;
+    public string nome;
+    public string email;
+    public string telefone;
 
-        public Equipamento equipamento;
+    public Fabricante(string nome, string email, string telefone)
+    {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
     }
 }

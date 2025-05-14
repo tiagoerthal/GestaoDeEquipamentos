@@ -1,6 +1,6 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
 
@@ -8,24 +8,26 @@ class Program
 {
     static void Main(string[] args)
     {
+        RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();
-        RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
+
+        TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
 
         TelaEquipamento telaEquipamento = new TelaEquipamento();
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
+        telaEquipamento.repositorioFabricante = repositorioFabricante;
 
         TelaChamado telaChamado = new TelaChamado();
         telaChamado.repositorioChamado = repositorioChamado;
         telaChamado.repositorioEquipamento = repositorioEquipamento;
 
-        TelaFabricante telaFabricante = new TelaFabricante();
-        telaFabricante.repositorioFabricante = repositorioFabricante;
-        telaFabricante.repositorioEquipamento = repositorioEquipamento;
-
         while (true)
         {
             char telaEscolhida = ApresentarMenuPrincipal();
+
+            if (telaEscolhida == 'S' || telaEscolhida == 's')
+                break;
 
             if (telaEscolhida == '1')
             {
@@ -107,6 +109,7 @@ class Program
                         break;
                 }
             }
+
         }
     }
 

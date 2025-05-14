@@ -1,201 +1,144 @@
-﻿
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
-
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
+public class TelaFabricante
 {
-    public class TelaFabricante
+    private RepositorioFabricante repositorioFabricante;
+
+    public TelaFabricante(RepositorioFabricante repositorioF)
     {
-        public RepositorioEquipamento repositorioEquipamento;
-        public RepositorioFabricante repositorioFabricante;
-        public void ExibirCabecalho()
-        {
-            Console.Clear();
-            Console.WriteLine("Gestão de Fabricantes");
-            Console.WriteLine();
-        }
+        repositorioFabricante = repositorioF;
+    }
 
-        public char ApresentarMenu()
-        {
+    public char ApresentarMenu()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("1 - Cadastro de Fabricante");
+        Console.WriteLine("2 - Visualizar Fabricantes");
+        Console.WriteLine("3 - Editar Fabricante");
+        Console.WriteLine("4 - Excluir Fabricante");
+        Console.WriteLine("S - Sair");
+
+        Console.WriteLine();
+
+        Console.Write("Digite uma opção válida: ");
+        char opcaoEscolhida = Console.ReadLine().ToUpper()[0];
+
+        return opcaoEscolhida;
+    }
+
+    public void CadastrarRegistro()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Cadastro de Fabricantes");
+
+        Console.WriteLine();
+
+        Fabricante novoFabricante = ObterDados();
+
+        repositorioFabricante.CadastrarFabricante(novoFabricante);
+
+        Console.WriteLine($"\nFabricante \"{novoFabricante.nome}\" cadastrado com sucesso!");
+        Console.ReadLine();
+    }
+
+    public void EditarRegistro()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Edição de Fabricantes");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        Fabricante fabricanteAtualizado = ObterDados();
+
+        repositorioFabricante.EditarFabricante(idSelecionado, fabricanteAtualizado);
+
+        Console.WriteLine($"\nFabricante \"{fabricanteAtualizado.nome}\" editado com sucesso!");
+        Console.ReadLine();
+    }
+
+    public void ExcluirRegistro()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine("Exclusão de Fabricantes");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        repositorioFabricante.ExcluirFabricante(idSelecionado);
+
+        Console.WriteLine($"\nFabricante excluído com sucesso!");
+        Console.ReadLine();
+    }
+
+    public void VisualizarRegistros(bool exibirCabecalho)
+    {
+        if (exibirCabecalho == true)
             ExibirCabecalho();
 
-            Console.WriteLine("1 - Cadastro de Fabricante");
-            Console.WriteLine("2 - Visualizar Fabricantes");
-            Console.WriteLine("3 - Editar Fabricantes");
-            Console.WriteLine("4 - Excluir Fabricantes");
-            Console.WriteLine("S - Sair");
+        Console.WriteLine("Visualização de Fabricantes");
 
-            Console.WriteLine();
+        Console.WriteLine();
 
-            Console.Write("Digite uma opção válida: ");
-            char opcaoEscolhida = Console.ReadLine().ToUpper()[0];
+        Console.WriteLine(
+            "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+            "Id", "Nome", "Email", "Telefone"
+        );
 
-            return opcaoEscolhida;
-        }
+        Fabricante[] fabricantes = repositorioFabricante.SelecionarFabricantes();
 
-        public void CadastrarRegistro()
+        for (int i = 0; i < fabricantes.Length; i++)
         {
-            ExibirCabecalho();
+            Fabricante f = fabricantes[i];
 
-            Console.WriteLine("Cadastro de Fabricantes");
-
-            Console.WriteLine();
-
-            Fabricantes fabricantes = ObterDados();
-
-            repositorioFabricante.CadastrarFabricante(fabricantes);
-
-            Console.WriteLine($"\nRepresentante \"{fabricantes.nomeRepresentante}\" cadastrado com sucesso!");
-            Console.ReadLine();
-        }
-
-        public void EditarRegistro()
-        {
-            ExibirCabecalho();
-
-            Console.WriteLine("Edição de Fabricantes");
-
-            Console.WriteLine();
-
-            VisualizarRegistros(false);
-
-            Console.Write("Digite o id do registro que deseja selecionar: ");
-            int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine();
-
-            Fabricantes fabricanteAtualizado = ObterDados();
-
-            bool conseguiuEditar = repositorioFabricante.EditarFabricantes(idSelecionado, fabricanteAtualizado);
-
-            if (!conseguiuEditar)
-            {
-                Console.WriteLine("Não foi possível encontrar o registro selecionado.");
-                Console.ReadLine();
-
-                return;
-            }
-
-            Console.WriteLine($"\nRepresentante \"{fabricanteAtualizado.nomeRepresentante}\" editado com sucesso!");
-            Console.ReadLine();
-        }
-
-        public void ExcluirRegistro()
-        {
-            ExibirCabecalho();
-
-            Console.WriteLine("Exclusão de Fabricantes");
-
-            Console.WriteLine();
-
-            VisualizarRegistros(false);
-
-            Console.Write("Digite o id do registro que deseja selecionar: ");
-            int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine();
-
-            bool conseguiuExcluir = repositorioFabricante.ExcluirFabricantes(idSelecionado);
-
-            if (!conseguiuExcluir)
-            {
-                Console.WriteLine("Não foi possível encontrar o registro selecionado.");
-                Console.ReadLine();
-
-                return;
-            }
-
-            Console.WriteLine($"\nRepresentante excluído com sucesso!");
-            Console.ReadLine();
-        }
-
-        public void VisualizarRegistros(bool exibirCabecalho)
-        {
-            if (exibirCabecalho == true)
-                ExibirCabecalho();
-
-            Console.WriteLine("Visualização de Fabricantes");
-
-            Console.WriteLine();
+            if (f == null)
+                continue;
 
             Console.WriteLine(
-                "{0, -10} | {1, -20} | {2, -20} | {3, -15} | {4, -20}",
-                "Id", "Nome do Representante", "E-mail", "Número de Telefone", "Equipamento"
+               "{0, -10} | {1, -20} | {2, -30} | {3, -15}",
+                f.id, f.nome, f.email, f.telefone
             );
-
-            Fabricantes[] fabricantes = repositorioFabricante.SelecionarFabricantes();
-
-            for (int i = 0; i < fabricantes.Length; i++)
-            {
-                Fabricantes f = fabricantes[i];
-
-                if (f == null)
-                    continue;
-
-                Console.WriteLine(
-                    "{0, -10} | {1, -20} | {2, -20} | {3, -15} | {4, -20}",
-                    f.id, f.nomeRepresentante, f.emailFabricante, f.telefoneFabricante, f.equipamento.nome
-                );
-            }
-
-            Console.ReadLine();
         }
 
-        public Fabricantes ObterDados()
-        {
-            Console.Write("Digite o nome do Representante: ");
-            string nomeRepresentante = Console.ReadLine();
+        Console.ReadLine();
+    }
 
-            Console.Write("Digite o email do Fabricante: ");
-            string emailFabricante = Console.ReadLine();
+    private void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("Gestão de Fabricantes");
+        Console.WriteLine();
+    }
 
-            Console.Write("Digite o número de telefone do Fabricante: ");
-            string telefoneFabricante = Console.ReadLine();
+    private Fabricante ObterDados()
+    {
+        Console.Write("Digite o nome do fabricante: ");
+        string nome = Console.ReadLine();
 
-            VisualizarEquipamentos();
+        Console.Write("Digite o endereço de email do fabricante: ");
+        string email = Console.ReadLine();
 
-            Console.Write("Digite o ID do equipamento que deseja selecionar: ");
-            int idEquipamento = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digite o telefone do fabricante: ");
+        string telefone = Console.ReadLine();
 
-            Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
-            
-            Fabricantes fabricantes = new Fabricantes();
-            fabricantes.nomeRepresentante = nomeRepresentante;
-            fabricantes.emailFabricante = emailFabricante;
-            fabricantes.telefoneFabricante = telefoneFabricante;
-            fabricantes.equipamento = equipamentoSelecionado;
+        Fabricante fabricante = new Fabricante(nome, email, telefone);
 
-            return fabricantes;
-        }
-
-        public void VisualizarEquipamentos()
-        {
-            Console.WriteLine("Visualização de Equipamentos");
-
-            Console.WriteLine();
-
-            Console.WriteLine(
-                "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
-                "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
-            );
-
-            Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
-
-            for (int i = 0; i < equipamentos.Length; i++)
-            {
-                Equipamento e = equipamentos[i];
-
-                if (e == null)
-                    continue;
-
-                Console.WriteLine(
-                    "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
-                    e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante, e.dataFabricacao.ToShortDateString()
-                );
-            }
-
-            Console.ReadLine();
-        }
+        return fabricante;
     }
 }

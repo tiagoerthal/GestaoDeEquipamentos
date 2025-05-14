@@ -1,72 +1,67 @@
-﻿
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricantes
+public class RepositorioFabricante
 {
-    public class RepositorioFabricante
+    private Fabricante[] fabricantes = new Fabricante[100];
+    private int contadorFabricantes = 0;
+
+    public void CadastrarFabricante(Fabricante novoFabricante)
     {
-        public Fabricantes[] Fabricantes = new Fabricantes[100];
-        public int contadorFabricantes = 0;
+        fabricantes[contadorFabricantes] = novoFabricante;
 
-        public void CadastrarFabricante(Fabricantes fabricantes)
-        {
-            Fabricantes[contadorFabricantes] = fabricantes;
+        contadorFabricantes++;
+    }
 
-            contadorFabricantes++;
-     
-        }
-        public bool EditarFabricantes(int idSelecionado, Fabricantes fabricanteAtualizado)
-        {
-            Fabricantes fabricanteSelecionado = SelecionarFabricantePorId(idSelecionado);
+    public bool EditarFabricante(int idSelecionado, Fabricante fabricanteAtualizado)
+    {
+        Fabricante fabricanteSelecionado = SelecionarFabricantePorId(idSelecionado);
 
-            if (fabricanteSelecionado == null)
-                return false;
-
-            fabricanteSelecionado.nomeRepresentante = fabricanteAtualizado.nomeRepresentante;
-            fabricanteSelecionado.emailFabricante = fabricanteAtualizado.emailFabricante;
-            fabricanteSelecionado.telefoneFabricante = fabricanteAtualizado.telefoneFabricante;
-            fabricanteSelecionado.equipamento = fabricanteAtualizado.equipamento;
-
-            return true;
-        }
-
-        public bool ExcluirFabricantes(int idSelecionado)
-        {
-            for (int i = 0; i < Fabricantes.Length; i++)
-            {
-                if (Fabricantes[i] == null)
-                    continue;
-
-                if (Fabricantes[i].id == idSelecionado)
-                {
-                    Fabricantes[i] = null;
-
-                    return true;
-                }
-            }
-
+        if (fabricanteSelecionado == null)
             return false;
-        }
 
-        public Fabricantes[] SelecionarFabricantes()
-        {
-            return Fabricantes;
-        }
+        fabricanteSelecionado.nome = fabricanteAtualizado.nome;
+        fabricanteSelecionado.email = fabricanteAtualizado.email;
+        fabricanteSelecionado.telefone = fabricanteAtualizado.telefone;
 
-        public Fabricantes SelecionarFabricantePorId(int idSelecionado)
+        return true;
+    }
+
+    public bool ExcluirFabricante(int idSelecionado)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
         {
-            for (int i = 0; i < Fabricantes.Length; i++)
+            if (fabricantes[i] == null)
+                continue;
+
+            else if (fabricantes[i].id == idSelecionado)
             {
-                Fabricantes f = Fabricantes[i];
+                fabricantes[i] = null;
 
-                if (f == null)
-                    continue;
-
-                if (f.id == idSelecionado)
-                    return f;
+                return true;
             }
-
-            return null;
         }
+
+        return false;
+    }
+
+    public Fabricante[] SelecionarFabricantes()
+    {
+        return fabricantes;
+    }
+
+    public Fabricante SelecionarFabricantePorId(int idSelecionado)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            Fabricante f = fabricantes[i];
+
+            if (f == null)
+                continue;
+
+            if (f.id == idSelecionado)
+                return f;
+        }
+
+        return null;
     }
 }

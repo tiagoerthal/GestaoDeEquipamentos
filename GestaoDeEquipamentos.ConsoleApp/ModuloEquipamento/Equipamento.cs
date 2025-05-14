@@ -1,4 +1,6 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class Equipamento
 {
@@ -6,7 +8,6 @@ public class Equipamento
     public string nome;
     public decimal precoAquisicao;
     public string numeroSerie;
-    public string fabricante;
+    public Fabricante fabricante;
     public DateTime dataFabricacao;
-
 }
