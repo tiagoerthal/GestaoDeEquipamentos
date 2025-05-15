@@ -14,11 +14,11 @@ class Program
 
         TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
 
-        TelaEquipamento telaEquipamento = new TelaEquipamento();
+        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento);
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
         telaEquipamento.repositorioFabricante = repositorioFabricante;
 
-        TelaChamado telaChamado = new TelaChamado();
+        TelaChamado telaChamado = new TelaChamado(repositorioChamado);
         telaChamado.repositorioChamado = repositorioChamado;
         telaChamado.repositorioEquipamento = repositorioEquipamento;
 

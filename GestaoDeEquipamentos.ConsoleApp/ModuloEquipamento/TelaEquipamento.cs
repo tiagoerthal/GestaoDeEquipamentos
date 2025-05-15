@@ -7,12 +7,11 @@ public class TelaEquipamento
     public RepositorioEquipamento repositorioEquipamento;
     public RepositorioFabricante repositorioFabricante;
 
-    public void ExibirCabecalho()
+    public TelaEquipamento(RepositorioEquipamento repositorioE)
     {
-        Console.Clear();
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine();
+        repositorioEquipamento = repositorioE;
     }
+
 
     public char ApresentarMenu()
     {
@@ -171,7 +170,7 @@ public class TelaEquipamento
         Console.ReadLine();
     }
 
-    public Equipamento ObterDados()
+    private Equipamento ObterDados()
     {
         Console.Write("Digite o nome do equipamento: ");
         string nome = Console.ReadLine();
@@ -192,13 +191,15 @@ public class TelaEquipamento
 
         Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarFabricantePorId(idFabricante);
 
-        Equipamento equipamento = new Equipamento();
-        equipamento.nome = nome;
-        equipamento.precoAquisicao = precoAquisicao;
-        equipamento.numeroSerie = numeroSerie;
-        equipamento.fabricante = fabricanteSelecionado;
-        equipamento.dataFabricacao = dataFabricacao;
+        Equipamento equipamento = new Equipamento(nome, precoAquisicao, numeroSerie, fabricanteSelecionado, dataFabricacao);
 
         return equipamento;
+    }
+
+    private void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine();
     }
 }

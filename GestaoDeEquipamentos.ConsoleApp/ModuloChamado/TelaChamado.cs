@@ -9,11 +9,9 @@ public class TelaChamado
     public RepositorioEquipamento repositorioEquipamento;
     public RepositorioChamado repositorioChamado;
 
-    public void ExibirCabecalho()
+    public TelaChamado(RepositorioChamado repositorioC)
     {
-        Console.Clear();
-        Console.WriteLine("Gestão de Chamados");
-        Console.WriteLine();
+        repositorioChamado = repositorioC;
     }
 
     public char ApresentarMenu()
@@ -142,32 +140,6 @@ public class TelaChamado
         Console.ReadLine();
     }
 
-    public Chamado ObterDados()
-    {
-        Console.Write("Digite o título do chamado: ");
-        string titulo = Console.ReadLine();
-
-        Console.Write("Digite a descrição do chamado: ");
-        string descricao = Console.ReadLine();
-
-        DateTime dataAbertura = DateTime.Now;
-
-        VisualizarEquipamentos();
-
-        Console.Write("Digite o ID do equipamento que deseja selecionar: ");
-        int idEquipamento = Convert.ToInt32(Console.ReadLine());
-
-        Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
-
-        Chamado chamado = new Chamado();
-        chamado.titulo = titulo;
-        chamado.descricao = descricao;
-        chamado.dataAbertura = dataAbertura;
-        chamado.equipamento = equipamentoSelecionado;
-
-        return chamado;
-    }
-
     public void VisualizarEquipamentos()
     {
         Console.WriteLine();
@@ -197,5 +169,34 @@ public class TelaChamado
         }
 
         Console.ReadLine();
+    }
+
+    private Chamado ObterDados()
+    {
+        Console.Write("Digite o título do chamado: ");
+        string titulo = Console.ReadLine();
+
+        Console.Write("Digite a descrição do chamado: ");
+        string descricao = Console.ReadLine();
+
+        DateTime dataAbertura = DateTime.Now;
+
+        VisualizarEquipamentos();
+
+        Console.Write("Digite o ID do equipamento que deseja selecionar: ");
+        int idEquipamento = Convert.ToInt32(Console.ReadLine());
+
+        Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
+
+        Chamado chamado = new Chamado(titulo, descricao, dataAbertura, equipamentoSelecionado);
+
+        return chamado;
+    }
+
+    private void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("Gestão de Chamados");
+        Console.WriteLine();
     }
 }
