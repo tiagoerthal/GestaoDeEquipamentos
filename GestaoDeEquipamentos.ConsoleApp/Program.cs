@@ -11,9 +11,6 @@ class Program
     {
         Fabricante fabricante = new Fabricante("", "", "");
 
-        RepositorioBase repositorioBase = new RepositorioBase();
-        repositorioBase.CadastrarRegistro(fabricante);
-
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();

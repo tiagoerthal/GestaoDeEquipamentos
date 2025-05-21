@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
@@ -41,7 +42,7 @@ public class TelaEquipamento
 
         Equipamento equipamento = ObterDados();
 
-        repositorioEquipamento.CadastrarEquipamento(equipamento);
+        repositorioEquipamento.CadastrarRegistro(equipamento);
 
         Console.WriteLine($"\nEquipamento \"{equipamento.nome}\" cadastrado com sucesso!");
         Console.ReadLine();
@@ -64,7 +65,7 @@ public class TelaEquipamento
 
         Equipamento equipamentoAtualizado = ObterDados();
 
-        bool conseguiuEditar = repositorioEquipamento.EditarEquipamento(idSelecionado, equipamentoAtualizado);
+        bool conseguiuEditar = repositorioEquipamento.EditarRegistro(idSelecionado, equipamentoAtualizado);
 
         if (!conseguiuEditar)
         {
@@ -93,7 +94,7 @@ public class TelaEquipamento
 
         Console.WriteLine();
 
-        bool conseguiuExcluir = repositorioEquipamento.ExcluirEquipamento(idSelecionado);
+        bool conseguiuExcluir = repositorioEquipamento.ExcluirRegistro(idSelecionado);
 
         if (!conseguiuExcluir)
         {
@@ -121,11 +122,11 @@ public class TelaEquipamento
             "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
         );
 
-        Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
+        EntidadeBase[] equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
-            Equipamento e = equipamentos[i];
+            Equipamento e = (Equipamento)equipamentos[i];
 
             if (e == null)
                 continue;
@@ -152,11 +153,11 @@ public class TelaEquipamento
             "Id", "Nome", "Email", "Telefone"
         );
 
-        Fabricante[] fabricantes = repositorioFabricante.SelecionarFabricantes();
+        EntidadeBase[] fabricantes = repositorioFabricante.SelecionarRegistros();
 
         for (int i = 0; i < fabricantes.Length; i++)
         {
-            Fabricante f = fabricantes[i];
+            Fabricante f = (Fabricante)fabricantes[i];
 
             if (f == null)
                 continue;
@@ -189,7 +190,7 @@ public class TelaEquipamento
         Console.Write("Digite o id do fabricante do equipamento: ");
         int idFabricante = Convert.ToInt32(Console.ReadLine());
 
-        Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarFabricantePorId(idFabricante);
+        Fabricante fabricanteSelecionado = (Fabricante)repositorioFabricante.SelecionarRegistroPorId(idFabricante);
 
         Equipamento equipamento = new Equipamento(nome, precoAquisicao, numeroSerie, fabricanteSelecionado, dataFabricacao);
 
