@@ -36,4 +36,11 @@ public class Fabricante
 
         return erros;
     }
+
+    public void AtualizarRegistro(Fabricante fabricanteAtualizado)
+    {
+        this.nome = fabricanteAtualizado.nome;
+        this.email = fabricanteAtualizado.email;
+        this.telefone = fabricanteAtualizado.telefone;
+    }
 }
