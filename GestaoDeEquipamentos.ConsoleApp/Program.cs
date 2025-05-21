@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
@@ -8,6 +9,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        Fabricante fabricante = new Fabricante("", "", "");
+
+        RepositorioBase repositorioBase = new RepositorioBase();
+        repositorioBase.CadastrarRegistro(fabricante);
+
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();
