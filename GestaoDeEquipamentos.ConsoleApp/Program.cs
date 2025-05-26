@@ -9,7 +9,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Fabricante fabricante = new Fabricante("", "", "");
 
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
@@ -17,13 +16,13 @@ class Program
 
         TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
 
-        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento);
-        telaEquipamento.repositorioEquipamento = repositorioEquipamento;
-        telaEquipamento.repositorioFabricante = repositorioFabricante;
+        TelaEquipamento telaEquipamento = new TelaEquipamento(
+            repositorioEquipamento,
+            repositorioFabricante
+        );
 
-        TelaChamado telaChamado = new TelaChamado(repositorioChamado);
-        telaChamado.repositorioChamado = repositorioChamado;
-        telaChamado.repositorioEquipamento = repositorioEquipamento;
+        TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
+
 
         while (true)
         {
