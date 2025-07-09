@@ -1,18 +1,30 @@
 ﻿
 using GestaoDeEquipamentos.Dominio.Compartilhado;
+using GestaoDeEquipamentos.Infraestrutura.Arquivos.Compartilhado;
 
 namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado
 {
-    public abstract class RepositorioBase<Tipo> where Tipo : EntidadeBase<Tipo>
+    public abstract class RepositorioBaseEmArquivo<Tipo> where Tipo : EntidadeBase<Tipo>
     {
         protected List<Tipo> registros = new List<Tipo>();
         protected static int contadorIds = 0;
 
+        protected ContextoDados contexto;
+
+        protected RepositorioBaseEmArquivo(ContextoDados contexto)
+        {
+            this.contexto = contexto;
+
+            this.registros = ObterRegistros();
+        }
+
         public void CadastrarRegistro(Tipo novoRegistro)
         {
-           novoRegistro.Id = ++contadorIds;
+            novoRegistro.Id = ++contadorIds;
 
             registros.Add(novoRegistro);
+
+            contexto.Salvar();
         }
 
         public bool EditarRegistro(int idSelecionado, Tipo registroAtualizado)
@@ -23,6 +35,8 @@ namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado
                 return false;
 
             registroSelecionado.AtualizarRegistro(registroAtualizado);
+
+            contexto.Salvar();
 
             return true;
         }
@@ -36,6 +50,7 @@ namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado
 
             registros.Remove(registroSelecionado);
 
+            contexto.Salvar();
 
             return true;
         }
@@ -55,5 +70,7 @@ namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado
 
             return null;
         }
+
+        protected abstract List<Tipo> ObterRegistros();
     }
 }

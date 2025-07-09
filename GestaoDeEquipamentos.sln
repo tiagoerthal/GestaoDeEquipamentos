@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.Domini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.Infraestrutura.Memoria", "GestaoDeEquipamentos.Infraestrutura\GestaoDeEquipamentos.Infraestrutura.Memoria.csproj", "{1356226A-FD2F-4321-B742-C9637E581F73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.Infraestrutura.Arquivos", "GestaoDeEquipamentos.Infraestrutura.Arquivos\GestaoDeEquipamentos.Infraestrutura.Arquivos.csproj", "{5DD29578-7C16-4461-A474-8FE2C81D9D93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1356226A-FD2F-4321-B742-C9637E581F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1356226A-FD2F-4321-B742-C9637E581F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1356226A-FD2F-4321-B742-C9637E581F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{8DA215E7-8ECE-4805-8BFA-1A2514471318} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{10036E53-7C4F-4E73-861A-C307B049F97A} = {0487F258-CECB-4333-8D10-340B34F70716}
 		{1356226A-FD2F-4321-B742-C9637E581F73} = {BFCE2284-E179-48B8-BAB9-D40FC159FB0D}
+		{5DD29578-7C16-4461-A474-8FE2C81D9D93} = {BFCE2284-E179-48B8-BAB9-D40FC159FB0D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C230CED-B6E8-4B6D-9675-0479DFD17613}
