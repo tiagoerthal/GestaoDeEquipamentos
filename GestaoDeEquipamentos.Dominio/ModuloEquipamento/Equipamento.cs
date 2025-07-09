@@ -1,7 +1,6 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
-
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.Dominio.Compartilhado;
+using GestaoDeEquipamentos.Dominio.ModuloFabricante;
+namespace GestaoDeEquipamentos.Dominio.ModuloEquipamento;
 
 public class Equipamento : EntidadeBase<Equipamento>
 {

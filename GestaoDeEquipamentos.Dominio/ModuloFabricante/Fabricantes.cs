@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
-using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.Dominio.Compartilhado;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+namespace GestaoDeEquipamentos.Dominio.ModuloFabricante;
 
 public class Fabricante : EntidadeBase<Fabricante>
 {

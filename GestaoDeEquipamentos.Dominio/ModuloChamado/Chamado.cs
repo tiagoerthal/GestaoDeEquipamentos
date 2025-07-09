@@ -1,7 +1,6 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado
+﻿using GestaoDeEquipamentos.Dominio.Compartilhado;
+using GestaoDeEquipamentos.Dominio.ModuloEquipamento;
+namespace GestaoDeEquipamentos.Dominio.ModuloChamado
 {
     public class Chamado : EntidadeBase<Chamado>
     {

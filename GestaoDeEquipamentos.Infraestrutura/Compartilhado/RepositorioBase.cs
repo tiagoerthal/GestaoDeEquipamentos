@@ -1,7 +1,7 @@
 ﻿
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+using GestaoDeEquipamentos.Dominio.Compartilhado;
 
-namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado
+namespace GestaoDeEquipamentos.Infraestrutura.Compartilhado
 {
     
 
@@ -21,7 +21,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado
         {
             Tipo registroSelecionado = SelecionarRegistroPorId(idSelecionado);
 
-            if (registroSelecionado == null)
+            if (registroSelecionado is null)
                 return false;
 
             registroSelecionado.AtualizarRegistro(registroAtualizado);
@@ -51,7 +51,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado
         {
             foreach (Tipo registro in registros)
             {
-                if (registro.Id == idSelecionado)
+                if (registro.Id.Equals(idSelecionado))
                     return registro;
             }
 
