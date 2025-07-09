@@ -15,14 +15,14 @@ class Program
         {
             telaPrincipal.ApresentarMenuPrincipal();
 
-            TelaBase telaEscolhida = telaPrincipal.ObterTela();
+            ITela telaEscolhida = telaPrincipal.ObterTela();
 
             if (telaEscolhida == null)
                 break;
 
             char opcaoEscolhida = telaEscolhida.ApresentarMenu();
 
-            if (opcaoEscolhida == 'S')
+            if (char.ToUpper(opcaoEscolhida) == 'S')
                 break;
 
             switch (opcaoEscolhida)
@@ -32,15 +32,15 @@ class Program
                     break;
 
                 case '2':
-                    telaEscolhida.VisualizarRegistros(true);
-                    break;
-
-                case '3':
                     telaEscolhida.EditarRegistro();
                     break;
 
-                case '4':
+                case '3':
                     telaEscolhida.ExcluirRegistro();
+                    break;
+
+                case '4':
+                    telaEscolhida.VisualizarRegistros(true);
                     break;
             }
         }

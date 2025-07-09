@@ -4,13 +4,15 @@ using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
-public class TelaChamado : TelaBase
+public class TelaChamado : TelaBase<Chamado>, ITela
 {
     private RepositorioChamado repositorioChamado;
     private RepositorioEquipamento repositorioEquipamento;
 
-    public TelaChamado(RepositorioChamado repositorioChamado, RepositorioEquipamento repositorioEquipamento)
-        : base("Chamado", repositorioChamado)
+    public TelaChamado(
+        RepositorioChamado repositorioChamado,
+        RepositorioEquipamento repositorioEquipamento
+    ) : base("Chamado", repositorioChamado)
     {
         this.repositorioChamado = repositorioChamado;
         this.repositorioEquipamento = repositorioEquipamento;
@@ -30,18 +32,13 @@ public class TelaChamado : TelaBase
             "Id", "Título", "Descrição", "Data de Abertura", "Equipamento"
         );
 
-        EntidadeBase[] chamados = repositorioChamado.SelecionarRegistros();
+        List<Chamado> chamados = repositorioChamado.SelecionarRegistros();
 
-        for (int i = 0; i < chamados.Length; i++)
+        foreach (Chamado c in chamados)
         {
-            Chamado c = (Chamado)chamados[i];
-
-            if (c == null)
-                continue;
-
             Console.WriteLine(
                 "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20}",
-                c.id, c.titulo, c.descricao, c.dataAbertura.ToShortDateString(), c.equipamento.nome
+                c.Id, c.Titulo, c.Descricao, c.DataAbertura.ToShortDateString(), c.Equipamento.Nome
             );
         }
 
@@ -63,14 +60,15 @@ public class TelaChamado : TelaBase
         Console.Write("Digite o ID do equipamento que deseja selecionar: ");
         int idEquipamento = Convert.ToInt32(Console.ReadLine());
 
-        Equipamento equipamentoSelecionado = (Equipamento)repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
+        Equipamento equipamentoSelecionado =
+            repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
 
         Chamado chamado = new Chamado(titulo, descricao, dataAbertura, equipamentoSelecionado);
 
         return chamado;
     }
 
-    public void VisualizarEquipamentos()
+    private void VisualizarEquipamentos()
     {
         Console.WriteLine();
 
@@ -83,18 +81,13 @@ public class TelaChamado : TelaBase
             "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
         );
 
-        EntidadeBase[] equipamentos = repositorioEquipamento.SelecionarRegistros();
+        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarRegistros();
 
-        for (int i = 0; i < equipamentos.Length; i++)
+        foreach (Equipamento e in equipamentos)
         {
-            Equipamento e = (Equipamento)equipamentos[i];
-
-            if (e == null)
-                continue;
-
             Console.WriteLine(
                 "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
-                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante.nome, e.dataFabricacao.ToShortDateString()
+                e.Id, e.Nome, e.PrecoAquisicao.ToString("C2"), e.NumeroSerie, e.Fabricante.Nome, e.DataFabricacao.ToShortDateString()
             );
         }
 

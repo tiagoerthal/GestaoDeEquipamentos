@@ -5,21 +5,21 @@ namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado
 {
     
 
-    public abstract class RepositorioBase
+    public abstract class RepositorioBase<Tipo> where Tipo : EntidadeBase<Tipo>
     {
-        private EntidadeBase[] registros = new EntidadeBase[100];
-        private int contadorRegistros = 0;
+        protected List<Tipo> registros = new List<Tipo>();
+        protected static int contadorIds = 0;
 
-        public void CadastrarRegistro(EntidadeBase novoRegistro)
+        public void CadastrarRegistro(Tipo novoRegistro)
         {
-            registros[contadorRegistros] = novoRegistro;
+           novoRegistro.Id = ++contadorIds;
 
-            contadorRegistros++;
+            registros.Add(novoRegistro);
         }
 
-        public bool EditarRegistro(int idSelecionado, EntidadeBase registroAtualizado)
+        public bool EditarRegistro(int idSelecionado, Tipo registroAtualizado)
         {
-            EntidadeBase registroSelecionado = SelecionarRegistroPorId(idSelecionado);
+            Tipo registroSelecionado = SelecionarRegistroPorId(idSelecionado);
 
             if (registroSelecionado == null)
                 return false;
@@ -31,37 +31,27 @@ namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado
 
         public bool ExcluirRegistro(int idSelecionado)
         {
-            for (int i = 0; i < registros.Length; i++)
-            {
-                if (registros[i] == null)
-                    continue;
+            Tipo registroSelecionado = SelecionarRegistroPorId(idSelecionado);
 
-                else if (registros[i].id == idSelecionado)
-                {
-                    registros[i] = null;
+            if (registroSelecionado is null)
+                return false;
 
-                    return true;
-                }
-            }
+            registros.Remove(registroSelecionado);
 
-            return false;
+
+            return true;
         }
 
-        public EntidadeBase[] SelecionarRegistros()
+        public List<Tipo> SelecionarRegistros()
         {
             return registros;
         }
 
-        public EntidadeBase SelecionarRegistroPorId(int idSelecionado)
+        public Tipo SelecionarRegistroPorId(int idSelecionado)
         {
-            for (int i = 0; i < registros.Length; i++)
+            foreach (Tipo registro in registros)
             {
-                EntidadeBase registro = registros[i];
-
-                if (registro == null)
-                    continue;
-
-                if (registro.id == idSelecionado)
+                if (registro.Id == idSelecionado)
                     return registro;
             }
 

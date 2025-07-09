@@ -42,9 +42,9 @@ public class TelaPrincipal
 
         Console.WriteLine();
 
-        Console.WriteLine("1 - Controle de Equipamentos");
-        Console.WriteLine("2 - Controle de Chamados");
-        Console.WriteLine("3 - Controle de Fabricantes");
+        Console.WriteLine("1 - Controle de Fabricantes");
+        Console.WriteLine("2 - Controle de Equipamentos");
+        Console.WriteLine("3 - Controle de Chamados");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -53,16 +53,16 @@ public class TelaPrincipal
         opcaoEscolhida = Console.ReadLine()[0];
     }
 
-    public TelaBase ObterTela()
+    public ITela? ObterTela()
     {
         if (opcaoEscolhida == '1')
-            return telaEquipamento;
+            return telaFabricante;
 
         else if (opcaoEscolhida == '2')
-            return telaChamado;
+            return telaEquipamento;
 
         else if (opcaoEscolhida == '3')
-            return telaFabricante;
+            return telaChamado;
 
         return null;
     }
