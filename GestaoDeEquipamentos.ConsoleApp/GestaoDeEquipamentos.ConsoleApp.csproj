@@ -8,7 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Compartilhado\TelaBase.cs~RF93d6fc.TMP" />
+    <None Remove="ModuloFabricantes\TelaFabricante.cs~RF98d87a.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GestaoDeEquipamentos.Dominio\GestaoDeEquipamentos.Dominio.csproj" />
+    <ProjectReference Include="..\GestaoDeEquipamentos.Infraestrutura.Arquivos\GestaoDeEquipamentos.Infraestrutura.Arquivos.csproj" />
     <ProjectReference Include="..\GestaoDeEquipamentos.Infraestrutura\GestaoDeEquipamentos.Infraestrutura.Memoria.csproj" />
   </ItemGroup>
 
