@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.Infrae
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.Infraestrutura.Arquivos", "GestaoDeEquipamentos.Infraestrutura.Arquivos\GestaoDeEquipamentos.Infraestrutura.Arquivos.csproj", "{5DD29578-7C16-4461-A474-8FE2C81D9D93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEquipamentos.WebApp", "GestaoDeEquipamentos.WebApp\GestaoDeEquipamentos.WebApp.csproj", "{01953FF9-3B86-46FB-89E9-7CA6EC2A0700}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD29578-7C16-4461-A474-8FE2C81D9D93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01953FF9-3B86-46FB-89E9-7CA6EC2A0700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01953FF9-3B86-46FB-89E9-7CA6EC2A0700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01953FF9-3B86-46FB-89E9-7CA6EC2A0700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01953FF9-3B86-46FB-89E9-7CA6EC2A0700}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{10036E53-7C4F-4E73-861A-C307B049F97A} = {0487F258-CECB-4333-8D10-340B34F70716}
 		{1356226A-FD2F-4321-B742-C9637E581F73} = {BFCE2284-E179-48B8-BAB9-D40FC159FB0D}
 		{5DD29578-7C16-4461-A474-8FE2C81D9D93} = {BFCE2284-E179-48B8-BAB9-D40FC159FB0D}
+		{01953FF9-3B86-46FB-89E9-7CA6EC2A0700} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C230CED-B6E8-4B6D-9675-0479DFD17613}
