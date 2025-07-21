@@ -1,5 +1,4 @@
 ﻿
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 using GestaoDeEquipamentos.Dominio.Compartilhado;
 using GestaoDeEquipamentos.Infraestrutura.Compartilhado;
 
